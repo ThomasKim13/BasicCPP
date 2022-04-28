@@ -86,7 +86,7 @@ Triangle::~Triangle()
 	std::cout << "Triangle Destructor called" << std::endl;
 }
 double Triangle:: area(){
-	return .5 * m_dWidth * m_dHeight;
+	return .5 * this->m_dWidth * this->m_dHeight;
 }
 
 
