@@ -1,0 +1,99 @@
+#include <iostream>
+using namespace std; 
+class AECU{
+    public:
+    AECU();
+    ~AECU();
+    void handleCommand(char cCommand);
+    private:
+    bool m_bActivatedHydraulicJacks;
+    bool m_bAcitvatedBeltTires;
+    bool m_bActivatedIRIllumination;
+    void actuateHydraulicJacks();
+    void actuateBeltTires();
+    void acuateIRIllumination();
+};
+
+AECU::AECU(){
+    m_bActivatedHydraulicJacks = false;
+    m_bActivatedIRIllumination = false;
+    m_bAcitvatedBeltTires = false;
+}
+AECU::~AECU(){}
+
+
+
+void AECU::actuateBeltTires(){
+    cout << "Belt Tires activated";
+}
+
+void AECU::actuateHydraulicJacks(){
+    cout << "Hydraulic Jacks activated";
+}
+
+void AECU::acuateIRIllumination(){
+    cout << "IRIllumination activated";
+}
+
+void AECU::handleCommand(char cCommand){
+    switch(cCommand){
+        case 'A':
+        case 'a':
+            if(m_bActivatedHydraulicJacks == true){
+                cout << "Hydraulic Jacks deactivated";
+                m_bActivatedHydraulicJacks = false;
+                break;
+            }
+            actuateHydraulicJacks();
+            m_bActivatedHydraulicJacks = true;
+            break; 
+        case 'B':
+        case 'b':
+            if(m_bAcitvatedBeltTires == true){
+                cout << "Belt Tires deactivated";
+                m_bAcitvatedBeltTires = false;
+                break;
+            }
+            actuateBeltTires();
+            m_bAcitvatedBeltTires = true;
+            break;
+        case 'E':
+        case 'e':
+            if(m_bActivatedIRIllumination == true){
+                cout << "IRIllumination deactivated";
+                m_bActivatedIRIllumination = false;
+                break;
+            }
+            acuateIRIllumination();
+            m_bActivatedIRIllumination = true;
+            break;
+            }
+    }
+
+
+
+int main(){
+    char userInput;
+    AECU mach;
+    while (userInput != 'x' || userInput != 'X'){
+        cout << 
+        "\n       (A)\n" << 
+        "   (F) (G) (B)\n" <<
+        "   (E)     (C)\n" <<
+        "       (D)" << endl;
+        cout << "Press X to turn off ignition or enter a Steering wheel button(A,B or E" << endl;
+        cin >> userInput;
+        mach.handleCommand(userInput);
+        if (userInput == 'x' || userInput == 'X'){
+            cout << "IGNITION OFF" << endl;
+            break;
+        }
+        
+
+    }
+    
+    
+}
+
+
+
