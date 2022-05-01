@@ -1,0 +1,60 @@
+#include <iostream>
+#include <cmath>
+#include <fstream>
+using namespace std;
+class CentralPolygonalNumbers{
+    public:
+    CentralPolygonalNumbers();
+    CentralPolygonalNumbers(int nMax);
+    ~CentralPolygonalNumbers();
+    void display();
+    bool save(string strFilename);
+    private:
+    int m_nMax;
+    int* mp_iNumbers;
+
+};
+CentralPolygonalNumbers::CentralPolygonalNumbers(){
+    int numbers[0];
+}
+
+CentralPolygonalNumbers::CentralPolygonalNumbers(int nMax){
+    mp_iNumbers = new int[nMax + 1];
+    for (int i = 0; i < nMax + 1; i++){
+        mp_iNumbers[i] += (pow(i,2) + i + 2) /2;
+    }
+}
+void CentralPolygonalNumbers::display(){
+    for(int i = 0; i <= sizeof(mp_iNumbers) + 2; i++){
+        cout << "n: " << i << ", " << "number of pieces: " << mp_iNumbers[i] << endl;
+    }
+    
+}
+
+CentralPolygonalNumbers::~CentralPolygonalNumbers(){
+    delete[] mp_iNumbers;
+    cout << "~CentralPolygonNumbers called\n";
+}
+bool CentralPolygonalNumbers::save(string strFilename){
+    ofstream ofsNumbers(strFilename);
+    
+
+    for(int i = 0; i <= sizeof(mp_iNumbers) + 2; i++){
+        ofsNumbers << mp_iNumbers[i] << endl;
+
+    }
+    ofsNumbers.close();
+    
+    
+
+}
+
+
+
+
+int main(){
+    
+    CentralPolygonalNumbers cpn(10);
+    cpn.display();
+    cpn.save("Numbers.TXT");    
+}
