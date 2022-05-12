@@ -17,7 +17,7 @@ unsigned long sigma(unsigned long n){
         }
 
         if (sum ==(n*(n+1)/2)){
-            string strMessage = "Invalid";
+            string strMessage = "Postcondition sum ==(n(n+1)/2: sum: " + to_string(sum) + "; n(n+1)/2: " + to_string(n * (n + 1)/2) + " (Loc: " + __FILE__ + ", " + to_string(__LINE__) + ")";
             throw runtime_error(strMessage);
         }
 
