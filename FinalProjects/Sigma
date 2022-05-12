@@ -1,0 +1,37 @@
+#include <iostream>
+#include<stdexcept>
+#include<string>
+using namespace std;
+unsigned long sigma(unsigned long n){
+    unsigned long sum = 0;
+
+    
+    try{
+        if (!(n >= 1)){
+            string strMessage = "Precondition n>=1 violated; invalid value for argument n: " + to_string(n) + " (Loc: " + __FILE__ + ", " + to_string(__LINE__) + ")";
+            throw runtime_error(strMessage);
+            
+        }
+        for(int i = 1; i <=n; i++){
+            sum += i;
+        }
+
+        if (sum ==(n*(n+1)/2)){
+            string strMessage = "Invalid";
+            throw runtime_error(strMessage);
+        }
+
+    }
+    catch(runtime_error & ex){
+        cout << "Exception: " << ex.what() << endl;
+        cout << "Cannout compute sum; returing 0" << endl;
+        sum = 0;
+    }
+    return sum;
+}
+int main(){
+    int sum = sigma(5);
+    cout << "sigma(5) = " << sum << endl;
+    sum = sigma(0);
+    cout << "sigma(0) = " << sum << endl;
+}
